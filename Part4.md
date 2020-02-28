@@ -39,5 +39,13 @@ Update your code so that the user can specify a bus number and your app will fil
 
 It should look something like this:
 
-WIP
+SO WIP
+
+MUCH INCOMPLETE
+
+WOW
+
+## Wrapping up
+
+Commit your code, push it, and flag down your trainer. Up next, [routing](Part5.md)!
 
