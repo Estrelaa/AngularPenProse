@@ -26,4 +26,4 @@ Check that your application still works after making this change!
 
 ## Wrapping up
 
-Commit your code, push it, and flag your trainer. Up next, user inputs!
+Commit your code, push it, and flag your trainer. Up next, [user inputs](Part4.md)!

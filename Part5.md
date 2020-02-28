@@ -1,83 +1,80 @@
-# Busboard Part 5 - HTTP and real data
-
-## Before you start
-
-We'll be using the TfL API in this part of the exercise. To use their API, you need to sign up for an account via [their website](https://api-portal.tfl.gov.uk/login). Most of the options are unimportant, but if you're concerned, you're building a web application, on the browser platform, targeting bus users with an estimated 2 users (you and your trainer!). You only need access to the "Core datasets".
-
-Once you've signed up, go to the [Tfl API Portal](https://api-portal.tfl.gov.uk/) and view your "API Credentials". You will need to make a note of your ID and Key.
+# Busboard Part 4 - Routing
 
 ## Aims
 
-Now that we've got the skeleton of our app together, we'll look at replacing all of the fake data we have with real data from the Tfl API.
+At the moment, everything in our app happens on a single page. In this part, we'll make the list of stops and the stop details appear on separate pages, with different URLs.
 
-By the end of this part, we'll be able to get a list of stops nearby a given location. We won't handle the arrival data just yet - that comes next.
+In the end, the two pages will look something like this:
 
-Here's what you're aiming for:
+![Part 4 stops](assets/part4stops.PNG)
 
-![Part 5](assets/part5.PNG)
+![Part 4 arrivals](assets/part4arrivals.PNG)
 
-It doesn't look much different from before, but these stops are now being extracted from real data that you'll get from TfL!
+## Setting up the router
 
-## Making an API call
+Angular has a builtin module that deals with routing, but it isn't included in your application by default. It's a bit fiddly to set up, but it's the same every time you do it, so once you've done it once you'll have mastered it. Here are the steps you need to follow to set up the router:
 
-In order to use Angular's HTTP client in your app, you need to import the module containing it. Add the following line to your `app.module.ts`:
+1. Run the command `ng generate module app-routing --flat --module=app`. This generates a routing module, and imports it into your application's root module.
 
-```typescript
-import { HttpClientModule } from '@angular/common/http';
-```
+1. Add the line `import { RouterModule, Routes } from '@angular/router'` to the top of your new module.
 
-Then add the `HttpClientModule` to the list of `imports` in your app module. This makes the `HttpClient` available for injection into your components and services.
+1. Define the routes: something like the following, but of course using your own names for the components:
 
-You should now modify your stops service so that instead of providing fake data, it pulls data from the TfL API. Here's the information you'll need:
-
-  - The API endpoint you will need is documented [here](https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/StopPoint/StopPoint_GetByGeoPoint). There is a bug in the documentation at the moment - `location.lat` and `location.lon` should just be `lat` and `lon`.
-
-  - The `stopTypes` parameter should be `NaptanPublicBusCoachTram` and the `modes` parameter should be `bus`.
-
-  - Make a few example requests from your browser to get an idea of what the response data looks like.
-
-  - Each API request you make should include two extra parameters: `app_id` and `app_key`, which you made a note of earlier.
-
-  - To make an HTTP get request using Angular's HTTP client, you should use the following syntax:
-   
     ```typescript
-    http.get<T>(requestUrl, {params: requestParameters});
+    const routes: Routes = [
+        { path: '', redirectTo: '/stops', pathMatch: 'full' },
+        { path: 'stops', component: StopsComponent },
+        { path: 'stop/:id', component: StopDetailComponent }
+    ];
     ```
 
-    where `T` is an interface (defined by you!) that the HTTP response will conform to.
+1. Remove any reference to providers or declarations from your module definition, and add the following metadata to the `NgModule` decorator:
 
-  - The result of `http.get` is not a straight value - it is an `Observable`. You will need to modify your method signature accordingly (VS Code will show you concrete types on hover).
+    ```typescript
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+    ```
 
-      - An `Observable` represents an asynschronous computation whose result may or may not be available yet. In any component that uses your stops service, in order to use the result of the `Observable` after the request completes, the following pattern can be used:
+1. Replace the template in `app.component.html` with the following, which tells Angular where to render the components you are routing to:
 
-          ```typescript
-          observable.subscribe(result => doSomething(result));
-          ```
+    ```html
+    <router-outlet></router-outlet>
+    ```
 
-          When the HTTP request completes, `doSomething` will be invoked with the response body.
+You should be all set for routing now! Visit http://localhost:4200 in your browser and check that you're redirected to `/stops`.
 
-  - The API request needs to include a latitude and longitude and a radius - it's fine to hardcode these for now.
+If you look closely at the routes you've defined, you'll see that there's a colon before the `id` segment of the `/stop` URL - this means that `id` is the name of a parameter that is used as a placeholder for the actual value that is used there. We'll see how to use that later.
 
-Try and piece all of this together to get some working code that fetches a list of stops from the TfL API and displays it as before. Don't worry about making the arrivals work yet - we'll be doing that in the next part!
+## Add links to your stops component
 
-Don't be afraid to break out some of this functionality into separate services that you can create using `ng generate service`. If you keep everything inside the stops service it might get a bit hard to understand!
+Since we're going to have a separate page for the arrival details, remove the component that displays them from the template of your stops component.
 
-If you get stuck here, remember to ask your trainer for help. This is by far the most complicated thing you've done so far.
+We're also going to need to change the behaviour when a user clicks on a certain stop. Rather than just marking it as selected, we now need to link them to the page that contains arrival details for that stop.
 
-## Making the app more useful
+You can create an Angular router link using HTML like the following:
 
-We need to include a latitude and longitude with the API request. This isn't very useful in the long run, because not very many people know their latitude and longitude. Almost everyone knows their postcode, though!
+```html
+<a routerLink="/stop/{{stop.id}}">Clickable link</a>
+```
 
-http://postcodes.io/ provides an API that will allow you to get the latitude and longitude corresponding to a UK postcode. For example, [this API call](http://api.postcodes.io/postcodes/se20ul) gives (among other things) the latitude and longitude of the postcode SE2 0UL.
+If your stop model didn't contain an ID before, you should modify it to include one now.
 
-Modify your app so that instead of using a latitude and longitude, it uses a postcode, makes an API call to postcodes.io to determine the latitude and longitude, and then gets the stops near the resulting lat/lon.
+## Fix your arrivals component
 
-To do this, you will probably need to use the `mergeMap` operator (import from `rxjs/operators`). It allows you to take an `Observable` (in this case, the request that gets to lat/lon) and use the result to create another `Observable` (the request that gets the stops) and returns a single `Observable` that combines those steps into one. For example:
+If you follow one of the links, your arrivals component probably doesn't work anymore. That's because previously, it was getting the stop information passed through an `Input` binding, whereas now it is being routed to.
+
+You can extract the stop ID from the route by injecting an `ActivatedRoute` (import from `@angular/router`) into the constructor of your component. You can then get hold of the ID from the `ngOnInit` method via:
 
 ```typescript
-getLatLon.pipe(mergeMap(latLonResult => getStops(latLonResult)));
+activatedRoute.snapshot.paramMap.get('id')
 ```
+
+`ngOnInit` is a special Angular method that runs just after a component is constructed. It is the correct place to do any initialisation that your component requires - it is bad practice in Angular to use the constructor for anything other than simply setting some member variables to simple values.
+
+Once you have the ID from the URL, you'll need to actually get hold of the stop's arrival details. Create a method in your stops service that gets the details for a single stop given its ID, and then inject this service into your component and use it to get the arrival data.
 
 ## Wrapping up
 
-By the end, you should have something that looks just like what you had before, but it's extracting real stops from the TfL API. Commit your code and push it to GitHub. The model solution lives [here](https://github.com/scl-softwire/angular-training/tree/part5/busboard).
+Everything should now be working as before, but with routing in place! Once you've finished this part, remember to commit your code and push it to GitHub. You can also take a look at the [model solution](https://github.com/scl-softwire/angular-training/tree/part4/busboard).
+
+[Part 6](Part6.md)

@@ -1,34 +1,26 @@
-# Busboard Part 7 - User input
+# Busboard Part 6 - Arrivals API
 
 ## Aims
 
-Everything is working smoothly. All we need now is a way for the user to specify their own postcode rather than using the harcoded one.
+In this part, we will reinstate the arrivals functionality by getting real arrivals data from the TfL API. No more fake data!
 
-## FormsModule
+You will then be able to click on a stop, and see data about its arrivals, like this:
 
-In order to bind user input to your component classes, you will need to import the `FormsModule` in your app's root module. In `app.module.ts`, add the following line:
+![Part 6 stops](assets/part6stops.PNG)
 
-```typescript
-import { FormsModule } from '@angular/forms';
-```
+![Part 6 arrivals](assets/part6arrivals.PNG)
 
-Then add `FormsModule` to the list of `imports` in the module definition.
+## Arrivals API
 
-## Binding input to your component
+[Here's the documentation](https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/StopPoint/StopPoint_Arrivals) for the API endpoint you'll need to use. The only parameter it takes is the Naptan ID of the stop you want arrivals for, which would have been available to you in the result of your previous API call. If you didn't use that part of the result, go back and modify your previous API call so that you save the Naptan ID's of each of the stops.
 
-Supposing you have a public member on your component called `postcode`, you can bind user input to this member as follows:
+## Using the API
 
-```html
-<input type="text" [(ngModel)]="postcode">
-```
+Just like in the previous part, you should now write some code that uses this API to get a list of arrivals for a given stop. Refer back to the guidance there if you get stuck, and of course, feel free to ask your trainer for help!
 
-This binds the input field to the member called `postcode` and any changes that the user makes to the field will then be reflected in the value of the member.
+You can now make your stop details component work again! The stop ID is already available to it, so you just need to make the API call and subscribe to the resulting `Observable`, just as you will have done on the stops page!
 
-Update your stops component so that the user can specify a postcode and your app will fetch the list of stops near that postcode.
-
-It should look something like this:
-
-![Part 7](assets/part7.PNG)
+After you're done, the entire app should be working as it did after Part 4, but with all real data.
 
 ## Wrapping up
 

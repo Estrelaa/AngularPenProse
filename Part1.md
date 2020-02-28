@@ -22,7 +22,7 @@ Now let's replace the contents of the template in `app.component.html` so that A
 
 ## Displaying stop details
 
-Angular has a clever mechanism for getting information out of TypeScript code and into your templates; any public member variables on your component class (the one in `*.component.ts`) will be available for use in the corresponding template. All you have to do is place the name of the variable between double curly braces: `{{foo}}`. You will have seen this working inn the previous part, when looking at the title of the application.
+Angular has a clever mechanism for getting information out of TypeScript code and into your templates; any public member variables on your component class (the one in `*.component.ts`) will be available for use in the corresponding template. All you have to do is place the name of the variable between double curly braces: `{{foo}}`. You will have seen this working in the previous part, when looking at the title of the application.
 
 We don't yet have any stop details in our code! Create a class that contains all of the data you think you will need about a stop (such a class is often called a "model" class).
 
