@@ -52,7 +52,7 @@ We don't yet have any location details in our code! Create a class that contains
 
 >You can create a boilerplate class using the Angular CLI - `ng generate class <class-name>`. Don't be afraid to create other useful classes too - maybe one to hold details about a particular pen? Remember to import them whenever you want to use them!
 
-Once you've defined your model class(es), create a pen as a member variable on your new component, and write some HTML in the template that will display its details.
+Once you've defined your model class(es), create a location as a member variable on your new component, and write some HTML in the template that will display its details.
 
 You will probably want to use the `ngFor` directive in your template. This lets you use a for-loop in your template, for example to loop over an array, and it repeats the element that it is used on, and all its children, for every iteration of the loop. For example, to create an ordered list with an item for each element of an array:
 
