@@ -2,7 +2,7 @@
 
 ## Aims
 
-The user should be able to specify what number buses should show up
+We want to be able to filter by who's borrowed our pens! The user should be able to type in a name and the location details should only display pens that have been lent to that person.
 
 ## FormsModule
 
@@ -27,23 +27,23 @@ Then add `FormsModule` to the list of `imports` in the module.
 
 ## Binding input to your component
 
-Make a public member on your component called `busNumber`. You can bind the user input to it like this:
+Make a public member on your component called `borrower`. You can bind the user input to it like this:
 
 ```html
-<input type="text" [(ngModel)]="busNumber">
+<input type="text" [(ngModel)]="borrower">
 ```
 
-This binds the input field to the member called `busNumber`. Any changes the user makes to the `<input>` updates the value of the member automatically.
+This binds the input field to the member called `borrower`. Any changes the user makes to the `<input>` updates the value of the member automatically.
 
-Update your code so that the user can specify a bus number and your app will filter out bus arrivals to only display buses with that number.
+Update your code so that the user can specify a name and your app will filter out pens to only display pens lent to that person.
 
 It should look something like this:
 
-SO WIP
+so wip
 
-MUCH INCOMPLETE
+much incomplete
 
-WOW
+wow
 
 ## Wrapping up
 

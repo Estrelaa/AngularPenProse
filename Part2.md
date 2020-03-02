@@ -1,54 +1,60 @@
-# Busboard Part 2 - Multiple stops
+# PEN Part 2 - Multiple locations
 
 ## Aims
 
-In this part, we'll make the page display a list of stops. When the user clicks on a stop, the page will show the details for that stop!
+In this part, we'll make the page display a list of locations. When the user clicks on a location, the page will show the details for that location!
 
 ## The List
 
-Let's create a new component that we'll use for showing the list of stops. Generate it in the same way that you generated your component in the previous part. Make sure you give it a good name!
+Let's create a new component that we'll use for showing the list of locations. Generate it in the same way that you generated your component in the previous part. Make sure you give it a good name!
 
-This component should simply display a list of stops - something like this:
+This component should simply display a list of locations - something like this:
 
-![Part 2 stops](assets/part2stops.PNG)
+so wip
 
-The stops won't be real yet, so just make some up!
+much incomplete
+
+wow
 
 ## User selections
 
-Next, we'll need a way for your users to select a stop by clicking on it. You can react to click events by using the `(click)` attribute in your template like so:
+Next, we'll need a way for your users to select a location by clicking on it. You can react to click events by using the `(click)` attribute in your template like so:
 
 ```html
 <a (click)="onClick()">Click me!</a>
 ```
 
-This will call the `onClick` method on your component class, which you'll need to define yourself. Maybe `displayStop()`? You can also pass arguments in to this method - anything you could have used in curly braces `{{}}` you can also use here!
+This will call the `onClick` method on your component class, which you'll need to define yourself. Maybe `displayLocation()`? You can also pass arguments in to this method - anything you could have used in curly braces `{{}}` you can also use here!
 
-Write a method on your component class that will remember the user's selection when they click on a stop.
+Write a method on your component class that will remember the user's selection when they click on a location.
 
-## Displaying the arrivals
+## Displaying the pens
 
-You already have a `BusStopComponent` that you can use for displaying arrivals, so there's no need to write a new one. This is the beauty of Angular components - you can re-use the same component in lots of different contexts.
+You already have a `LocationDetailsComponent` that you can use for displaying pens, so there's no need to write a new one. This is the beauty of Angular components - you can re-use the same component in lots of different contexts.
 
-You will need to make a change to it, though. Currently the fake stop is hardcoded inside, but we want it to display the stop the user has selected. We'll need to pass the stop into `BusStopComponent`: you can do this using an `Input` binding.
+You will need to make a change to it, though. Currently the location is hardcoded inside, but we want it to display the location the user has selected. We'll need to pass the location into `LocationDetailsComponent`: you can do this using an `Input` binding.
 
 Add in an import of `Input` from `@angular/core` in the component class file, and then define a member variable like this:
 
 ```typescript
-@Input() stop: Stop
+@Input() location: Location
 ```
 
 This allows you to pass in a value for this member variable using an HTML attribute. It will look something like this:
 
 ```html
-<app-bus-stop [stop]="selectedStop"></app-bus-stop>
+<app-location-details [location]="selectedLocation"></app-location-details>
 ```
 
-Just like before, you can use anything you could have used for curly braces `{{}}` inside the HTML attribute, where `selectedStop` is.
+Just like before, you can use anything you could have used for curly braces `{{}}` inside the HTML attribute, where `selectedLocation` is.
 
-Update your stops component so that when a selection is made, it displays the details for that stop beneath the list:
+Update your locations component so that when a selection is made, it displays the details for that location beneath the list:
 
-![Part 2 arrivals](assets/part2arrivals.PNG)
+so wip
+
+much incomplete
+
+wow
 
 Try using the `ngIf` directive: attach it to something, and it will completely from it from the DOM if the condition isn't met:
 
