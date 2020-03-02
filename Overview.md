@@ -8,14 +8,16 @@ The aim is to get you to understand as much Angular as you can without overloadi
 
 ## Before you start
 
-To get going, you'll need to have completed the following setup. Let your trainer know when you're done, or ask for help if you can't complete any of the steps.
+To get going, you'll need to have completed the following setup. Ask your trainer for help if you can't complete any of the steps.
 
-  - You'll be pairing this session!
-      - Distribute yourselves into pairs: preferably one person in each pair who hasn't used Angular or TypeScript before.
-      - Let whoever has the least Angular experience and set up on their machine: they'll be driving first when you get started.
+*Even though you'll be pairing, you'll need to set up the following on both people's machines:*
+
   - Download [Visual Studio Code](https://code.visualstudio.com/): it's very good with TypeScript and AngularJS.
   - Make sure that you have Git, Node.js and npm installed on your machine - you'll need at least version 10.13.0 of Node.
       - Use [nvm-windows](https://github.com/coreybutler/nvm-windows) or [nvm](https://github.com/nvm-sh/nvm) for updating your Node version.
+
+Pick whoever has the least Angular experience and do the rest on their machine: they'll be driving first when you get started.
+
   - Open up a command prompt and navigate to somewhere where you're happy to create a new directory for this project.
   - Run the command `npm install -g @angular/cli` to install the Angular CLI
   - Run `ng new pen` to create a new Angular project, and navigate to the root directory that was created.
@@ -26,4 +28,4 @@ To get going, you'll need to have completed the following setup. Let your traine
 
 ## TypeScript
 
-If you haven't written in TypeScript before, don't worry! If you're familiar with other typed languages like C# or Java, it should feel reasonably familiar. There's a [TypeScript Cheatsheet](TypescriptCheatsheet.md) available if you'd like something to refer to: make good use of it!
+If you haven't written in TypeScript before, don't worry! If you've used other typed languages like C# or Java, it should feel reasonably familiar. There's a [TypeScript Cheatsheet](TypescriptCheatsheet.md) available if you'd like something to refer to: make good use of it!
