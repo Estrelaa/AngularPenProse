@@ -2,7 +2,7 @@
 
 ## Aims
 
-By the end of this part, your app's homepage will display a single location and the pens you own in it. Behold!
+By the end of this part, your app's homepage will display a single location and the pens you own in it. See how each pen has a colour, a pen type, and who's borrowing it?
 
 ![Part 1](assets/Part1.png)
 
