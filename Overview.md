@@ -16,7 +16,7 @@ To get going, you'll need to have completed the following setup. Ask your traine
   - Make sure that you have Git, Node.js and npm installed on your machine - you'll need at least version 10.13.0 of Node.
       - Use [nvm-windows](https://github.com/coreybutler/nvm-windows) or [nvm](https://github.com/nvm-sh/nvm) for updating your Node version.
 
-Pick whoever has the least Angular experience and do the rest on their machine: they'll be driving first when you get started.
+*Pick whoever has the least Angular experience and do the rest on their machine: they'll be driving first when you get started.*
 
   - Open up a command prompt and navigate to somewhere where you're happy to create a new directory for this project.
   - Run the command `npm install -g @angular/cli` to install the Angular CLI
