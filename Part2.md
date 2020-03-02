@@ -1,4 +1,4 @@
-# PEN Part 2 - Multiple locations
+# PEN Part 2 - Nested Components
 
 ## Aims
 
@@ -8,13 +8,11 @@ In this part, we'll make the page display a list of locations. When the user cli
 
 Let's create a new component that we'll use for showing the list of locations. Generate it in the same way that you generated your component in the previous part. Make sure you give it a good name!
 
-This component should simply display a list of locations - something like this:
+This component should simply display a list of locations. Put it above your location details component. You'll end up with something like this:
 
-so wip
+![Part 2a](assets/Part2a.png)
 
-much incomplete
-
-wow
+*(You may need to rejig some of your HTML to make it look sensible)*
 
 ## User selections
 
@@ -50,19 +48,17 @@ Just like before, you can use anything you could have used for curly braces `{{}
 
 Update your locations component so that when a selection is made, it displays the details for that location beneath the list:
 
-so wip
+![Part 2b](assets/Part2b.png)
 
-much incomplete
-
-wow
-
-Try using the `ngIf` directive: attach it to something, and it will completely from it from the DOM if the condition isn't met:
-
-```html
-<div *ngIf="condition">This won't display if `condition` is false</div>
-```
-
-You should get the drill now, you can replace `condition` with whatever public member variable in the component class, just like for braces `{{}}`.
+>The `ngIf` directive: attach it to something, and it will completely remove it from the DOM if the condition isn't met:
+>
+>```html
+><div *ngIf="condition">This won't display if `condition` is false</div>
+>```
+>
+>You should get the drill now, you can replace `condition` with whatever public member variable in the component class, just like for braces `{{}}`, or even a little piece of code!
+>
+>Give it a go!
 
 ## Wrapping up
 

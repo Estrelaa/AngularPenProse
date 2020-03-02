@@ -6,11 +6,8 @@ At the moment, everything in our app happens on a single page. In this part, we'
 
 In the end, the two pages will look something like this:
 
-so wip
-
-much incomplete
-
-wow
+![Part5a](assets/Part5a.png)
+![Part5b](assets/Part5b.png)
 
 ## Setting up the router
 
@@ -30,11 +27,18 @@ Angular has a builtin module that deals with routing, but it isn't included in y
     ];
     ```
 
-1. Remove any reference to providers or declarations, and add the following metadata to the `NgModule` decorator:
+1. Remove any reference to providers or declarations, and weave in the following metadata to the `NgModule` decorator:
 
     ```typescript
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+    ...
+    imports: [
+      ...
+      RouterModule.forRoot(routes)
+    ],
+    exports: [
+      RouterModule
+    ]
+    ...
     ```
 
 1. Replace the template in `app.component.html` with the following, which tells Angular where to render the components you are routing to:
@@ -45,7 +49,7 @@ Angular has a builtin module that deals with routing, but it isn't included in y
 
 You should be all set for routing now! Visit http://localhost:4200 in your browser and check that you're redirected to `/locations`.
 
-If you look closely at the routes you've defined, you'll see that there's a colon before the `id` segment of the `/location` URL - this means that `id` is the name of a parameter that is used as a placeholder for the actual value that is used there. We'll see how to use that later.
+>If you look closely at the routes you've defined, you'll see that there's a colon before the `id` segment of the `/location` URL - this means that `id` is the name of a parameter that is used as a placeholder for the actual value that is used there. We'll see how to use that later.
 
 ## Add links to your locations component
 
@@ -71,7 +75,7 @@ You can extract the location ID from the route by injecting an `ActivatedRoute` 
 activatedRoute.snapshot.paramMap.get('id')
 ```
 
-`ngOnInit` is a special Angular method that runs just after a component is constructed. It is the correct place to do any initialisation that your component requires - it is bad practice in Angular to use the constructor for anything other than simply setting some member variables to simple values.
+>`ngOnInit` is a special Angular method that runs just after a component is constructed. It is the correct place to do any initialisation that your component requires - it is bad practice in Angular to use the constructor for anything other than simply setting some member variables to simple values.
 
 Once you have the ID from the URL, you'll need to actually get hold of the location's details. Create a method in your locations service that gets the details for a single location given its ID, and then inject this service into your component and use it to get the location data.
 
@@ -85,6 +89,6 @@ If you've finished early, why not improve your app? Here are some ideas:
 
 - Prettify the app. At the moment, it probably looks fairly plain. Add some CSS to the `*.component.css` files to spice up the look of your PEN.
 
-- Error handling. I bet there are a few places where error handling could be improved. What if no pens are returned for a given location?
+- Error handling. I bet there are a few places where error handling could be improved. What if a user navigates to a location that doesn't exist?
 
 - Usability. Is there anything about your app that annoys you as you use it? Can you fix that?

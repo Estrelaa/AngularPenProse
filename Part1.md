@@ -1,14 +1,10 @@
-# PEN Part 1 - Your first component
+# PEN Part 1 - Your First Component
 
 ## Aims
 
 By the end of this part, your app's homepage will display a single location and the pens you own in it. Behold!
 
-so wip
-
-much incomplete
-
-wow
+![Part 1](assets/Part1.png)
 
 ## A whole new world
 
